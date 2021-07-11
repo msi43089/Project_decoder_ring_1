@@ -15,25 +15,28 @@ const polybiusModule = (function () {
                     12: "f", 22: "g", 32: "h", 42: "(i/j)", 52: "k",
                     13: "l", 23: "m", 33: "n", 43: "o", 53: "p",
                     14: "q", 24: "r", 34: "s", 44: "t", 54: "u",
-                    15: "v", 25: "w", 35: "x", 45: "y", 55: "z", " ": " "
+                    15: "v", 25: "w", 35: "x", 45: "y", 55: "z", 56: " "
                     }
   
 
             
   function polybius(input, encode = true) {
+    //if decoding
+    if(encode === false){
+      //replace spaces with two digit placeholder
+      let addSpaces = input.replace(" ", 56)
+      //returns false if input is not even
+      if (addSpaces.length % 2 !== 0) return false;
+      //split string into array of 2 digit values
+      //map array based on num value in object - return to string
+      return addSpaces.match(/.{1,2}/g).map(num => toDecode[num]).join("")
+    }
     //convert input to lowercase
     const lower = input.toLowerCase();
     //convert input to array
-    const encoded = lower.split("")
-    //map corresponing object value to array
-    .map(letter => toEncode[letter])
-    //convert array into string 
-    .join("")
-    
-    
-
-
-   return encoded
+    let result = lower.split("")
+    //map corresponing object value to array and convert to string
+    return result.map(letter => toEncode[letter]).join("")    
   }
 
 
