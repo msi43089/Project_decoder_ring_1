@@ -4,43 +4,52 @@
 // of the anonymous function on line 6
 
 const caesarModule = (function () {
-  const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']  //define the alphabet in an array
+  //define the alphabet in an array
+  const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
   function caesar(input, shift, encode = true) {
-    if(shift === 0 || shift > 25 || shift < -25){       //if shift is less than -25, greater than 25 or 0 return false - early return
+    //if shift is less than -25, greater than 25 or 0 return false - early return
+    if(shift === 0 || shift > 25 || shift < -25){       
       return false
     }
-    let lower = input.toLowerCase()                          //convert input to lowercase
-    let message = "";                                        //initialize empty string
-    for (let j = 0; j < lower.length; j++){                  //loop thru lowercased input 
-      if(alphabet.includes(lower[j])){                          //check to see if character is in alphabet
-        if (encode){
-        let index = (alphabet.indexOf(lower[j])) + shift           //define the index of the new letter
-        if ((index) < 26 && (index) > -1){                         //if index exists in alphabet array
-        message += alphabet[index]                                    //add letter to message
+    //convert input to lowercase
+    let lower = input.toLowerCase()  
+    //initialize empty string
+    let message = "";
+    //loop thru lowercased input 
+    for (let j = 0; j < lower.length; j++){    
+      //check to see if character is in alphabet
+      if(alphabet.includes(lower[j])){ 
+        //define empty index to store shifted value
+        let index = null
+          //if encoding - add shift value to alphabet index                         
+          if (encode){
+            index = (alphabet.indexOf(lower[j])) + shift           
+          }
+          //if decoding - subrtract shift from alphabet index
+          else {
+            index = (alphabet.indexOf(lower[j])) - shift
+          }
+        //if shifted index exists in alphabet array
+        if ((index) < 26 && (index) > -1){
+          //add letter to message                         
+          message += alphabet[index]                                    
         }
-        else if(index > 25){                                       //if index is greater than array length
-          message += alphabet[(index) - 26]                           //reduce index by array size and add letter to message
+        //if shifted index is greater than array length
+        else if(index > 25){    
+          //reduce index by array size and add letter to message                                   
+          message += alphabet[(index) - 26]                           
         }
-        else {                                                     //if index is less than 0                    
-          message += alphabet[(index) +26]                            //add array length to index and add letter to message
+        //if index is less than 0  
+        else {    
+          //add array length to index and add letter to message                                                                   
+          message += alphabet[(index) +26]                            
         }
       }
-      else {
-        let index = (alphabet.indexOf(lower[j])) - shift           //define the index of the new letter
-        if ((index) < 26 && (index) > -1){                         //if index exists in alphabet array
-        message += alphabet[index]                                    //add letter to message
-        }
-        else if(index > 25){                                       //if index is greater than array length
-          message += alphabet[(index) - 26]                           //reduce index by array size and add letter to message
-        }
-        else {                                                     //if index is less than 0                    
-          message += alphabet[(index) +26]                            //add array length to index and add letter to message
-        }
-      }
-      }
-      else {                                                      //if characted is not a letter 
-        message += lower[j]                                           //add character to message
+      //if characted is not a letter 
+      else {     
+        //add character to message                                                 
+        message += lower[j]                                           
       }
     }
     return message

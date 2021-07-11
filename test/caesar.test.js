@@ -47,4 +47,11 @@
         const expected = "whldwxap"
         expect(actual).to.equal(expected)
 })   
+     it("Should decode the message", () => {
+        const input = "vjku ku c oguucig"
+        const shift = 2
+        const actual = caesarModule.caesar(input, shift, false)
+        const expected = "this is a message"
+        expect(actual).to.equal(expected)
+})   
  })
