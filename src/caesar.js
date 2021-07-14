@@ -7,16 +7,15 @@ const caesarModule = (function () {
   //define the alphabet in an array
   const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+  //input is a string to encode/decode
+  //shift is a number representing the amount of charactes each letter should shit in the alphabet
   function caesar(input, shift, encode = true) {
     //if shift is less than -25, greater than 25 or 0 return false - early return
     if(shift === 0 || shift > 25 || shift < -25){       
       return false
     }
-    //convert input to lowercase
-    let lower = input.toLowerCase()  
-    //initialize empty string
+    const lower = input.toLowerCase()  
     let message = "";
-    //loop thru lowercased input 
     for (let j = 0; j < lower.length; j++){    
       //check to see if character is in alphabet
       if(alphabet.includes(lower[j])){ 
