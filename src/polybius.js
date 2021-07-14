@@ -18,8 +18,7 @@ const polybiusModule = (function () {
                     15: "v", 25: "w", 35: "x", 45: "y", 55: "z", 56: " "
                     }
   
-
-            
+  //input is a string to encode/decode
   function polybius(input, encode = true) {
     //if decoding
     if(encode === false){
@@ -38,7 +37,6 @@ const polybiusModule = (function () {
     //map corresponing object value to array and convert to string
     return result.map(letter => toEncode[letter]).join("")    
   }
-
 
   return {
     polybius,

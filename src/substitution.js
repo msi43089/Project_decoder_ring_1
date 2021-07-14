@@ -14,7 +14,6 @@ const substitutionModule = (function () {
     if (!alphabet || alphabet.length !== 26) return false
     //convert alphabet into an array
     alphabet = alphabet.split("")
-    //add space to array
     alphabet.push(" ")
     //check for dupicate elements in the array
     for (let i = 0; i < alphabet.length; i++){
