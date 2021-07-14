@@ -4,30 +4,41 @@
 // of the anonymous function on line 6
 
 const substitutionModule = (function () {
-  let realAlphabet = "abcdefghijklmnopqrstuvwxyz"
-  let alpha = realAlphabet.split("")
+  //defince real alphabet with space character
+  let realAlphabet = "abcdefghijklmnopqrstuvwxyz "
 
-  // you can add any code you want within this function scope
 
+  //input is a string to be decoded/encoded
+  //alphabet is a string of 26 unique characters 
   function substitution(input, alphabet, encode = true) {
     //early return false if alphabet is missing or does not have 26 characters
     if (!alphabet || alphabet.length !== 26) return false
     //convert alphabet into an array
-    let subAlphabet = alphabet.split("");
-    //check for dupicate elements in the array - sort array
-    let sortAlpha = subAlphabet.sort()
-    //loop thru sorted array
-    for (let i = 0; i < sortAlpha.length; i++)
-      //if current indexed element equals next indexed element return false
-      if(sortAlpha[i +1] === sortAlpha[i]){
+    alphabet = alphabet.split("").push(" ")
+    //add space to array
+    alphabet.push(" ")
+    //check for dupicate elements in the array
+    for (let i = 0; i < alphabet.length; i++){
+      if (alphabet.indexOf(alphabet[i]) != alphabet.lastIndexOf(alphabet[i])){
         return false
       }
-    let inputArray = input.split("")
-      //find the index of each "inputArray" element in the aplpha array
-      //find the element that corresponds to the same index in the "subAlphabet" array
-
-
-    // your solution code here
+    }
+    //convert input to lowercase
+    input = input.toLowerCase();
+    //initiatie result
+    let result = ""
+    //loop each input - matching the real alphabet index to the substitution alphabet index and add 
+    //corresponding letter to result
+    for (let i = 0; i < input.length; i++){
+      if (encode){
+        result += alphabet[realAlphabet.indexOf(input[i])]
+      }
+      else{
+        result += realAlphabet[alphabet.indexOf(input[i])]
+      }
+    }
+   return result
+   
   }
 
   return {
