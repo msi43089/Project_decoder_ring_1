@@ -7,14 +7,13 @@ const substitutionModule = (function () {
   //defince real alphabet with space character
   let realAlphabet = "abcdefghijklmnopqrstuvwxyz "
 
-
   //input is a string to be decoded/encoded
   //alphabet is a string of 26 unique characters 
   function substitution(input, alphabet, encode = true) {
     //early return false if alphabet is missing or does not have 26 characters
     if (!alphabet || alphabet.length !== 26) return false
     //convert alphabet into an array
-    alphabet = alphabet.split("").push(" ")
+    alphabet = alphabet.split("")
     //add space to array
     alphabet.push(" ")
     //check for dupicate elements in the array
