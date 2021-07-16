@@ -37,12 +37,12 @@ const caesarModule = (function () {
         //if shifted index is greater than array length
         else if(index > 25){    
           //reduce index by array size and add letter to message                                   
-          message += alphabet[(index) - 26]                           
+          message += alphabet[(index) - alphabet.length]                           
         }
         //if index is less than 0  
         else {    
           //add array length to index and add letter to message                                                                   
-          message += alphabet[(index) +26]                            
+          message += alphabet[(index) + alphabet.length]                            
         }
       }
       //if characted is not a letter 
