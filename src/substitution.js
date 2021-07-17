@@ -4,7 +4,7 @@
 // of the anonymous function on line 6
 
 const substitutionModule = (function () {
-  //defince real alphabet with space character
+  //defince real alphabet with space character to maintain spaces
   let realAlphabet = "abcdefghijklmnopqrstuvwxyz "
 
   //input is a string to be decoded/encoded
@@ -21,11 +21,9 @@ const substitutionModule = (function () {
         return false
       }
     }
-    //convert input to lowercase
     input = input.toLowerCase();
-    //initiatie result
     let result = ""
-    //loop each input - matching the real alphabet index to the substitution alphabet index and add 
+    //match the real alphabet index to the substitution alphabet index and add 
     //corresponding letter to result
     for (let i = 0; i < input.length; i++){
       if (encode){

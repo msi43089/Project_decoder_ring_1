@@ -11,15 +11,14 @@ const caesarModule = (function () {
   //shift is a number representing the amount of charactes each letter should shit in the alphabet
   function caesar(input, shift, encode = true) {
     //if shift is less than -25, greater than 25 or 0 return false - early return
-    if(shift === 0 || shift > 25 || shift < -25){       
+    const maxShift = 25
+    if(shift === 0 || shift > maxShift || shift < -maxShift){       
       return false
     }
     const lower = input.toLowerCase()  
     let message = "";
     for (let j = 0; j < lower.length; j++){    
-      //check to see if character is in alphabet
       if(alphabet.includes(lower[j])){ 
-        //define empty index to store shifted value
         let index = null
           //if encoding - add shift value to alphabet index                         
           if (encode){
@@ -30,12 +29,12 @@ const caesarModule = (function () {
             index = (alphabet.indexOf(lower[j])) - shift
           }
         //if shifted index exists in alphabet array
-        if ((index) < 26 && (index) > -1){
+        if ((index) < alphabet.length && (index) >= 0){
           //add letter to message                         
           message += alphabet[index]                                    
         }
         //if shifted index is greater than array length
-        else if(index > 25){    
+        else if(index >= alphabet.length){    
           //reduce index by array size and add letter to message                                   
           message += alphabet[(index) - alphabet.length]                           
         }

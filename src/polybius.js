@@ -22,19 +22,16 @@ const polybiusModule = (function () {
   function polybius(input, encode = true) {
     //if decoding
     if(encode === false){
-      //replace spaces with two digit placeholder
+      //replace spaces with two digit placeholder to determine odd/even
       let addSpaces = input.replace(" ", 56)
-      //returns false if input is not even
       if (addSpaces.length % 2 !== 0) return false;
       //split string into array of 2 digit values
-      //map array based on num value in object - return to string
+      //map array based on num value in object
       return addSpaces.match(/.{1,2}/g).map(num => toDecode[num]).join("")
     }
-    //convert input to lowercase
     const lower = input.toLowerCase();
-    //convert input to array
     let result = lower.split("")
-    //map corresponing object value to array and convert to string
+    //map corresponing object value 
     return result.map(letter => toEncode[letter]).join("")    
   }
 
